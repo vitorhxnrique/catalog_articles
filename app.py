@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import os
 
-# 1. Configuração de Estética Minimalista
+
 st.set_page_config(page_title="Anais do Washes | 2021-2025", layout="wide", page_icon="🔖")
 
 st.markdown("""
@@ -68,7 +68,7 @@ if xl:
             mask = df.apply(lambda row: row.astype(str).str.contains(busca, case=False).any(), axis=1)
             df = df[mask]
 
-    # --- ÁREA PRINCIPAL ---
+   
     st.title("ANAIS DO WORKSHOP SOBRE ASPECTOS SOCIAIS, HUMANOS E ECONÔMICOS DE SOFTWARE (Washes)")
     st.header(f"Artigos de {ano_selecionado}")
     st.caption(f"{len(df)} resultados encontrados")
@@ -80,18 +80,18 @@ if xl:
             with st.container():
                 st.markdown('<div class="artigo-container">', unsafe_allow_html=True)
                 
-                # Título em vermelho e sem link
+                
                 st.markdown(f'<div class="titulo-texto">{row["Título"]}</div>', unsafe_allow_html=True)
                 
-                # Autores e Instituição
+                
                 autores = row.get('Nome dos Autores', row.get('Autor', 'N/A'))
                 inst = row.get('Instituição', 'N/A')
                 st.markdown(f'<div class="meta-dados"><i>{autores}</i> • {inst}</div>', unsafe_allow_html=True)
                 
-                # Tag da Área
+                
                 st.markdown(f'<span class="tag-area">{row["Área Temática"]}</span>', unsafe_allow_html=True)
                 
-                # Expander com detalhes
+                
                 with st.expander("Ver detalhes"):
                     st.write("**Resumo:**")
                     st.write(row.get('Resumo', 'Resumo indisponível.'))
